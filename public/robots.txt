@@ -1,0 +1,40 @@
+# TagAlong Robots.txt
+# Allow all search engines and AI crawlers
+
+User-agent: *
+Allow: /
+Crawl-delay: 0
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+# OpenAI GPT Bot
+User-agent: GPTBot
+Allow: /
+
+# Anthropic Claude
+User-agent: Claude-Web
+Allow: /
+
+# Common AI/ML Crawlers
+User-agent: CCBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Sitemap location
+Sitemap: https://tagalong.me/sitemap.xml
+
+# No restrictions on any paths
+Disallow:
