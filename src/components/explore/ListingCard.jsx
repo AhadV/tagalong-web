@@ -18,10 +18,13 @@ export default function ListingCard({ listing, avatars, index }) {
     return selected;
   }, [avatars, index]);
 
+  // Get the first image from the images array
+  const imageUrl = listing.images && listing.images.length > 0 ? listing.images[0] : '/placeholder-image.jpg';
+
   return (
-    <a href={listing.link} target="_blank" rel="noopener noreferrer" className="group block">
+    <a href={listing.affiliate_link} target="_blank" rel="noopener noreferrer" className="group block">
       <div className="aspect-[4/3] rounded-2xl overflow-hidden relative">
-        <img src={listing.image_url} alt={listing.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+        <img src={imageUrl} alt={listing.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
         {listing.rating && (
           <div className="absolute top-3 right-3 bg-white/90 rounded-full px-2.5 py-1 text-sm font-semibold flex items-center space-x-1 backdrop-blur-sm">
             <Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />
@@ -33,7 +36,7 @@ export default function ListingCard({ listing, avatars, index }) {
         <h3 className="font-semibold text-gray-800 leading-tight truncate">{listing.title}</h3>
         <p className="text-sm text-gray-500">{listing.location}</p>
         <p className="font-semibold text-gray-900 mt-1">
-          ${listing.price} <span className="font-normal text-gray-600">{listing.price_label || 'per night'}</span>
+          <span className="font-normal text-gray-600">{listing.price_range}</span>
         </p>
         <div className="flex items-center space-x-2 mt-2">
             <div className="flex -space-x-2">
