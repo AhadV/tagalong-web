@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Listing } from '@/api/entities';
+import { db } from '@/lib/supabase';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import ListingCard from '../components/explore/ListingCard';
@@ -25,10 +25,20 @@ export default function Explore() {
   useEffect(() => {
     const fetchListings = async () => {
       setLoading(true);
-      const allListings = await Listing.list('-created_date', 100); // Fetch all listings
-      // Shuffle the array to mix hotels and experiences
-      const shuffledListings = allListings.sort(() => Math.random() - 0.5);
-      setListings(shuffledListings);
+      try {
+        const { data: allListings, error } = await db.getListings();
+        if (error) {
+          console.error('Error fetching listings:', error);
+          setListings([]);
+        } else {
+          // Shuffle the array to mix hotels and experiences
+          const shuffledListings = (allListings || []).sort(() => Math.random() - 0.5);
+          setListings(shuffledListings);
+        }
+      } catch (error) {
+        console.error('Error fetching listings:', error);
+        setListings([]);
+      }
       setLoading(false);
     };
     fetchListings();

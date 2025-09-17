@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { User } from '@/api/entities';
+import { useAuth } from '@/hooks/useAuth';
 import LoginModal from './auth/LoginModal';
 
 const footerLinks = {
@@ -59,23 +59,10 @@ const FooterLinkColumn = ({ title, links, onLoginClick }) => (
 
 export default function Footer() {
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-        try {
-            const user = await User.me();
-            setCurrentUser(user);
-        } catch (e) {
-            setCurrentUser(null);
-        }
-    };
-    fetchUser();
-  }, []);
+  const { user: currentUser, signInWithGoogle } = useAuth();
 
   const handleLoginClick = () => {
-    // Use loginWithRedirect instead of showing modal
-    User.loginWithRedirect(window.location.href);
+    setShowLoginModal(true);
   };
 
   const handleCloseLoginModal = () => {
