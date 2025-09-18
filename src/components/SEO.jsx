@@ -50,7 +50,7 @@ const SEO = ({
       name: 'TagAlong',
       description: 'Curated travel recommendations from your favorite creators',
       url: 'https://tagalong.me',
-      logo: 'https://tagalong.me/logo.png',
+      logo: 'https://tagalong.me/official_favicon.png',
       sameAs: [
         'https://twitter.com/tagalong',
         'https://instagram.com/tagalong',

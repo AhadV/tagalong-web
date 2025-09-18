@@ -20,7 +20,7 @@
 - **Real-time**: Ready for future real-time features
 
 ### 4. Favicon & Branding ✅
-- **Favicon**: Set up with your favicon_appicon.png
+- **Favicon**: Set up with your official_favicon.png
 - **Domain**: Configured for https://tagalong.me
 
 ## 🚀 Next Steps for Deployment
