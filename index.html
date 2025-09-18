@@ -48,6 +48,19 @@
 
     <!-- Cookie Consent Manager -->
     <link rel="stylesheet" id="silktide-consent-manager-css" href="/cookie-banner/silktide-consent-manager.css">
+    <style>
+      /* Force hide cookie icon and credit link */
+      #silktide-cookieicon-global,
+      [data-testid="silktide-cookieicon"],
+      .silktide-cookieicon,
+      .silktide-credit-link,
+      [href*="silktide.com"],
+      [href*="consent-manager"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
@@ -61,7 +74,8 @@
         showBackground: true
       },
       cookieIcon: {
-        show: false
+        show: false,
+        position: "hidden"
       },
       cookieTypes: [
         {
@@ -112,8 +126,9 @@
         preferences: {
           title: "Customize your cookie preferences",
           description: "<p>We respect your right to privacy. You can choose not to allow some types of cookies. Your cookie preferences will apply across our website.</p>",
-          creditLinkText: "",
-          creditLinkAccessibleLabel: ""
+          creditLinkText: null,
+          creditLinkAccessibleLabel: null,
+          showCreditLink: false
         }
       }
     });
