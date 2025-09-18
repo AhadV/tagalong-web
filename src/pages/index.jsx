@@ -24,7 +24,9 @@ import CreatorAcademy from "./CreatorAcademy";
 
 import TermsOfUse from "./TermsOfUse";
 
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import NotFound from "./NotFound";
+
+import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
 
 const PAGES = {
     
@@ -74,11 +76,11 @@ function PagesContent() {
     
     return (
         <Layout currentPageName={currentPage}>
-            <Routes>            
-                
-                    <Route path="/" element={<Home />} />
-                
-                
+            <Routes>
+
+                    <Route path="/" element={<Navigate to="/Home" replace />} />
+
+
                 <Route path="/Home" element={<Home />} />
                 
                 <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
@@ -102,7 +104,9 @@ function PagesContent() {
                 <Route path="/CreatorAcademy" element={<CreatorAcademy />} />
                 
                 <Route path="/TermsOfUse" element={<TermsOfUse />} />
-                
+
+                <Route path="*" element={<NotFound />} />
+
             </Routes>
         </Layout>
     );

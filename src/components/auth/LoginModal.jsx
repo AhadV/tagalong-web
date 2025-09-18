@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { logError } from '@/utils/errorHandler';
 import { X, Users, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
@@ -13,7 +14,7 @@ export default function LoginModal({ isOpen, onClose }) {
       await signInWithGoogle();
       onClose();
     } catch (error) {
-      console.error("Google sign in failed:", error);
+      logError('Google sign in failed', error);
     }
   };
 

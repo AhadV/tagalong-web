@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { db } from '@/lib/supabase';
+import { logError } from '@/utils/errorHandler';
 import { useAuth } from '@/hooks/useAuth';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
@@ -160,7 +161,7 @@ export default function CreatorApplicationPage() {
         navigate(createPageUrl('Home'));
       }, 3000);
     } catch (error) {
-      console.error('Submission failed:', error);
+      logError('Creator application submission failed', error);
       alert('There was an error submitting your application. Please try again.');
     } finally {
       setIsLoading(false);

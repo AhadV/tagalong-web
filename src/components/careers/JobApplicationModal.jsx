@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { db, storage } from '@/lib/supabase';
+import { logError } from '@/utils/errorHandler';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -88,7 +89,7 @@ export default function JobApplicationModal({ isOpen, onClose, jobCategories }) 
 
     } catch (err) {
       setError('Failed to submit application. Please try again.');
-      console.error('Application submission error:', err);
+      logError('Job application submission error', err);
     } finally {
       setIsSubmitting(false);
     }

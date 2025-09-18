@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Navigation from '../components/Navigation';
+import { logError } from '@/utils/errorHandler';
 // Removed: import FeaturedGrid from '../components/FeaturedGrid'; // FeaturedGrid content is now inlined
 import Hero from '../components/Hero';
 import Footer from '../components/Footer';
@@ -163,7 +164,7 @@ const GridTile = ({ gridTitle, location, images, link, creatorCount, avatars, in
             src={avatar} 
             alt={`Creator ${i+1}`}
             onError={(e) => {
-              console.error('Avatar failed to load:', avatar);
+              logError('Avatar failed to load', null, { avatar });
               e.target.style.display = 'none'; // Hide broken images
             }}
           />

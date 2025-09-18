@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { db } from '@/lib/supabase';
+import { logError } from '@/utils/errorHandler';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import ListingCard from '../components/explore/ListingCard';
@@ -28,7 +29,7 @@ export default function Explore() {
       try {
         const { data: allListings, error } = await db.getListings();
         if (error) {
-          console.error('Error fetching listings:', error);
+          logError('Error fetching listings', error);
           setListings([]);
         } else {
           // Shuffle the array to mix hotels and experiences
@@ -36,7 +37,7 @@ export default function Explore() {
           setListings(shuffledListings);
         }
       } catch (error) {
-        console.error('Error fetching listings:', error);
+        logError('Error fetching listings', error);
         setListings([]);
       }
       setLoading(false);

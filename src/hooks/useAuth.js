@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase, auth } from '@/lib/supabase';
+import { logError } from '@/utils/errorHandler';
 
 export function useAuth() {
   const [user, setUser] = useState(null);
@@ -23,12 +24,12 @@ export function useAuth() {
 
   const signInWithGoogle = async () => {
     const { error } = await auth.signInWithGoogle();
-    if (error) console.error('Error signing in:', error);
+    if (error) logError('Error signing in', error);
   };
 
   const signOut = async () => {
     const { error } = await auth.signOut();
-    if (error) console.error('Error signing out:', error);
+    if (error) logError('Error signing out', error);
     setUser(null);
   };
 
